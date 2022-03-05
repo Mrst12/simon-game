@@ -33,9 +33,17 @@ describe("game object contains correct keys", () => {
 describe("newGame works correctly", () => {
     beforeAll(() => {
         game.score = 42;
+        game.playerMoves = [1, 2, 3];
+        game.currentGame = [1, 2, 3];
         newGame();
     });
     test("should set game score to zero", () => {
         expect(game.score).toEqual(0);
+    });
+    test("should set playerMoves to empty", () => {
+        expect(game.playerMoves.length).toBe(0);
+    });
+    test("should set currentGame to empty", () => {
+        expect(game.currentGame.length).toBe(0);
     });
 });

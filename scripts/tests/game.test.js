@@ -2,7 +2,12 @@
  * @jest-environment jsdom
  */
 
-const { game, newGame, showScore, addTurn } = require("../game");
+const {
+    game,
+    newGame,
+    showScore,
+    addTurn
+} = require("../game");
 
 beforeAll(() => {
     let fs = require("fs");
@@ -49,5 +54,23 @@ describe("newGame works correctly", () => {
     });
     test("should display 0 for element with id of score", () => {
         expect(document.getElementById("score").innerText).toEqual(0);
+    });
+});
+
+describe("gameplay works correctly", () => {
+    beforeEach(() => {
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+        addTurn();
+    });
+    afterEach(() => {
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+    });
+    test("addTurn adds a new turn to the game", () => {
+        addTurn();
+        expect(game.currentGame.length).toBe(2);
     });
 });

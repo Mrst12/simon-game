@@ -6,7 +6,8 @@ const {
     game,
     newGame,
     showScore,
-    addTurn
+    addTurn,
+    lightsOn
 } = require("../game");
 
 beforeAll(() => {
@@ -72,5 +73,10 @@ describe("gameplay works correctly", () => {
     test("addTurn adds a new turn to the game", () => {
         addTurn();
         expect(game.currentGame.length).toBe(2);
+    });
+    test("should add correct class to light up buttons", () => {
+        let button = document.getElementById(game.currentGame[0]);
+        lightsOn(game.currentGame[0]);
+        expect(button.classList).toContain("light");
     });
 });
